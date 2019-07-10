@@ -59,8 +59,20 @@ def main(path, dry_run=True):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Dedupe files based on checksum. Use symlinks to resolve dups.')
-    parser.add_argument('path', help='an integer for the accumulator')
-    parser.add_argument('--live', action='store_true', default=False, help='Actually commit changes to disk')
+    parser = argparse.ArgumentParser(
+        description=('Dedupe files based on checksum. '
+                     'Use symlinks to resolve dups.')
+    )
+    parser.add_argument(
+        'path',
+        help=('Where to start looking for duplicate files. '
+              'Searches recursively under this path')
+    )
+    parser.add_argument(
+        '--live',
+        action='store_true',
+        default=False,
+        help='Actually commit changes to disk'
+    )
     args = parser.parse_args()
     main(args.path, not args.live)
